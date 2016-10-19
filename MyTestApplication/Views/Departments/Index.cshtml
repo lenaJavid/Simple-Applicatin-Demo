@@ -1,0 +1,38 @@
+﻿@model List<AuthenticationLibrary.Model.Department>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Departments List</h2>
+
+@Html.ActionLink("Create", "Create", "CRUDOperation")
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>Department Name</td>
+        <td>Head Manager</td>
+        <td>Gender</td>
+        <td>Is Active</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(x => item.Did)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Dname)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.HOB)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(x => item.Active)
+            </td>
+        </tr>
+    }
+</table>

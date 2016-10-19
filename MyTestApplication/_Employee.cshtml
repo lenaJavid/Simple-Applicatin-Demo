@@ -1,0 +1,93 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employee</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="../Scripts/bootstrap.css" rel="stylesheet" />
+
+    <!--Angular.js file has to be define before my written module, its priority is important-->
+    <script src="../Scripts/angular.js"></script>
+    <script src="../Scripts/AngularScripts/Module.js"></script>
+    <script src="../Scripts/AngularScripts/Service.js"></script>
+    <script src="../Scripts/AngularScripts/Controller.js"></script>
+</head>
+<body ng-app ="myApp" ng-controller="myEmployeeCntrl">
+    <input type="button" class="btnAdd" value=" Add Employee" ng-click="AddEmployeeDiv()" />
+
+    <div class="divList">
+        <p class="divHead">Employee List</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td><b>ID</b></td>
+                <td><b>Name</b></td>
+                <td><b>Gender</b></td>
+                <td><b>DepartmentId</b></td>
+                <td><b>Actions</b></td>
+            </tr>
+            <tr ng-repeat="employee in employees">
+                <td>
+                    {{employee.Eid}}
+                </td>
+                <td>
+                    {{employee.Ename}}
+                </td>
+                <td>
+                    {{employee.EGen}}
+                </td>
+                <td>
+                    {{employee.Did}}
+                </td>
+                <td>
+                    <span ng-click="editEmployee(employee)" class="btnAdd">Edit</span>
+                    <span ng-click="deleteEmployee(employee)" class="btnRed">Delete</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-show="divEmployee">
+        <p class="divHead">{{Action}} Employee</p>
+        <table>
+            <tr>
+                <td><b>Id</b></td>
+                <td>
+                    <input type="text" disabled="disabled" ng-model="employeeId" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>Name</b></td>
+                <td>
+                    <input type="text" ng-model="employeeName" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>Gender</b></td>
+                <td>
+                    <input type="text" ng-model="employeeEGen" />
+                </td>
+            </tr>
+            <tr>
+                <td><b>DepartmentId</b></td>
+                <td>
+                    <input type="text" ng-model="employeeDepartmentId" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" class="btnAdd" value="Save" ng-click="AddUpdateEmployee()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</bodyng-app>
+</html>

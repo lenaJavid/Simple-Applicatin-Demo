@@ -1,0 +1,10 @@
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\AuthenticationLibrary.dll
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\AuthenticationLibrary.pdb
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\EntityFramework.dll
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\EntityFramework.xml
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\obj\Debug\AuthenticationLibrary.dll
+c:\users\lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\obj\Debug\AuthenticationLibrary.pdb
+C:\Users\Lena\documents\visual studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\bin\Debug\AuthenticationLibrary.dll.config
+C:\Users\Lena\Documents\Visual Studio 2013\Projects\myAuthenticationProject\AuthenticationLibrary\obj\Debug\AuthenticationLibrary.csprojResolveAssemblyReference.cache

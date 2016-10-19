@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AuthenticationLibrary.Model.Department>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Did }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Did }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Did })|
+            @Ajax.ActionLink("AjaxDelete", "MainIndex", new { id = item.Did }, new AjaxOptions { HttpMethod = "Get", UpdateTargetId = "MyData", InsertionMode = InsertionMode.Replace })
+        </td>
+    </tr>
+}
+
+</table>

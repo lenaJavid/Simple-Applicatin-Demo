@@ -1,0 +1,14 @@
+﻿@model List<AuthenticationLibrary.Model.Department>
+@{
+    ViewBag.Title = "AdminIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-3.0.0.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<h2>Departments List</h2>
+
+<div id="MyData">
+    @{Html.RenderPartial("MainIndex");}
+</div>
+
+

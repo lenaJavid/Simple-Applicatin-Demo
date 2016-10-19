@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AuthenticationLibrary.Model.Employee>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ename)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ESal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EGen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tbl_Dpt.Dname)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ename)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ESal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EGen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tbl_Dpt.Dname)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Eid }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Eid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Eid })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,17 @@
+﻿@model AuthenticationLibrary.Model.Department
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Department Details Information</h2>
+<table border="1">
+    <tr>
+        <td>
+            @Html.DisplayNameFor(x => x.Did):@Html.DisplayFor(x => x.Did) <br />
+            @Html.DisplayNameFor(x => x.Dname):@Html.DisplayFor(x => x.Dname) <br />
+            @Html.DisplayNameFor(x => x.HOB):@Html.DisplayFor(x => x.HOB) <br />
+            @Html.DisplayNameFor(x => x.Active):@Html.DisplayFor(x => x.Active) <br />
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OrganizationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Did" />
+    </Key>
+    <Property Name="Did" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Dname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HOB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="tbl_Emp" Relationship="Self.FK_tbl_Emp_tbl_Dpt" FromRole="tbl_Dpt" ToRole="tbl_Emp" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Eid" />
+    </Key>
+    <Property Name="Eid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ename" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ESal" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="EGen" Type="Boolean" />
+    <Property Name="EDOB" Type="DateTime" Precision="3" />
+    <Property Name="Did" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_Dpt" Relationship="Self.FK_tbl_Emp_tbl_Dpt" FromRole="tbl_Emp" ToRole="tbl_Dpt" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserRoles" Relationship="OrganizationModel.RoleUserRole" FromRole="Role" ToRole="UserRole" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Role" Relationship="OrganizationModel.RoleUserRole" FromRole="UserRole" ToRole="Role" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="OrganizationModel.UserUserRole" FromRole="UserRole" ToRole="User" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="UserRoles" Relationship="OrganizationModel.UserUserRole" FromRole="User" ToRole="UserRole" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tbl_Emp_tbl_Dpt">
+    <End Role="tbl_Dpt" Type="OrganizationModel.Department" Multiplicity="1" />
+    <End Role="tbl_Emp" Type="OrganizationModel.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Dpt">
+        <PropertyRef Name="Did" />
+      </Principal>
+      <Dependent Role="tbl_Emp">
+        <PropertyRef Name="Did" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OrganizationEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Departments" EntityType="OrganizationModel.Department" />
+    <EntitySet Name="Employees" EntityType="OrganizationModel.Employee" />
+    <EntitySet Name="Roles" EntityType="OrganizationModel.Role" />
+    <EntitySet Name="UserRoles" EntityType="OrganizationModel.UserRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_tbl_Emp_tbl_Dpt" Association="Self.FK_tbl_Emp_tbl_Dpt">
+      <End Role="tbl_Dpt" EntitySet="Departments" />
+      <End Role="tbl_Emp" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="RoleUserRole" Association="OrganizationModel.RoleUserRole">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="UserUserRole" Association="OrganizationModel.UserUserRole">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRole" EntitySet="UserRoles" />
+    </AssociationSet>
+    <EntitySet Name="Cities" EntityType="OrganizationModel.City" />
+  </EntityContainer>
+  <Association Name="RoleUserRole">
+    <End Type="OrganizationModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="OrganizationModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserUserRole">
+    <End Type="OrganizationModel.User" Role="User" Multiplicity="1" />
+    <End Type="OrganizationModel.UserRole" Role="UserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserRole">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Id2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
